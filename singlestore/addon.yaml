@@ -1,0 +1,23 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: singlestore-addon
+spec:
+  backupTasks:
+  - name: LogicalBackup
+    singleton: true
+    function: singlestore-backup
+    driver: Restic
+    parameters:
+    - name: args
+      usage: Specifies the database args 
+      required: false
+  restoreTasks:
+  - name: LogicalBackupRestore
+    singleton: true
+    function: singlestore-restore
+    driver: Restic
+    parameters:
+    - name: args
+      usage: Specifies the database args 
+      required: false

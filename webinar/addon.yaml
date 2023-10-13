@@ -1,0 +1,24 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: mysql-addon
+spec:
+  backupTasks:
+  - name: LogicalBackup
+    singleton: true
+    function: mysql-backup
+    driver: Restic
+    parameters:
+    - name: args
+      usage: Specifies the database args 
+      required: false
+      default: "--all-databases --set-gtid-purged=OFF"
+  restoreTasks:
+  - name: LogicalBackupRestore
+    singleton: true
+    function: mysql-restore
+    driver: Restic
+    parameters:
+    - name: args
+      usage: Specifies the database args 
+      required: false
