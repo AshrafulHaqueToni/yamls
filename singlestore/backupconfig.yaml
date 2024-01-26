@@ -36,5 +36,5 @@ spec:
       addon:
         name: singlestore-addon
         tasks:
-          - name: LogicalBackup
+          - name: logical-backup
 

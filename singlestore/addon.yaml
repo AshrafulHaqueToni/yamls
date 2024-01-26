@@ -4,20 +4,41 @@ metadata:
   name: singlestore-addon
 spec:
   backupTasks:
-  - name: LogicalBackup
-    singleton: true
+  - name: logical-backup
     function: singlestore-backup
     driver: Restic
+    executor: Job
+    singleton: true
     parameters:
     - name: args
-      usage: Specifies the database args 
+      usage: Arguments to be passed to the dump command.
       required: false
+    - name: databases
+      usage: List of databases to backup.
+      required: false
+    - name: enableCache
+      usage: Enable or disable caching. Disabling caching may impact backup performance.
+      required: false
+      default: "true"
+    - name: scratchDir
+      usage: Directory for holding temporary files and restic cache.
+      required: false
+      default: /tmp
   restoreTasks:
-  - name: LogicalBackupRestore
-    singleton: true
+  - name: logical-backup-restore
     function: singlestore-restore
     driver: Restic
+    executor: Job
+    singleton: true
     parameters:
     - name: args
-      usage: Specifies the database args 
+      usage: Arguments to be passed to the dump command.
       required: false
+    - name: enableCache
+      usage: Enable or disable caching. Disabling caching may impact backup performance.
+      required: false
+      default: "true"
+    - name: scratchDir
+      usage: Directory for holding temporary files and restic cache.
+      required: false
+      default: /tmp

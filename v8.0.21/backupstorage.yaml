@@ -7,11 +7,11 @@ spec:
   storage:
     provider: s3
     s3:
-      endpoint: us-east-1.linodeobjects.com
-      bucket: kubestash-test-mysql
-      region: us-east-1
-      prefix: test-v8.0.21
-      secret: s3-secret
+      endpoint: ap-south-1.linodeobjects.com
+      bucket: ashraf-singlestore
+      region: ap-south-1
+      prefix: test
+      secretName: s3-secret
   usagePolicy:
     allowedNamespaces:
       from: All

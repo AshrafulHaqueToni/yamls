@@ -16,6 +16,6 @@ spec:
       name: encry-secret 
       namespace: demo
   addon:
-    name: mysql-v8-0-21
+    name: mysql-addon
     tasks:
-      - name: mysql-restore
+      - name: logical-backup-restore

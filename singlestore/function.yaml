@@ -3,27 +3,32 @@ kind: Function
 metadata:
   name: singlestore-backup
 spec:
-  image: ashraf10039/singlestore-restic-plugin:start_8.0.21_linux_amd64
+  image: ashraf10039/singlestore-restic-plugin:v1.0.1
   args:
   - backup
-  - --scratch-dir=${scratchDir:=/tmp}
   - --namespace=${namespace:=default}
   - --backupsession=${backupSession:=}
+  - --enable-cache=${enableCache:=}
+  - --scratch-dir=${scratchDir:=}
+  - --wait-timeout=${waitTimeout:=300}
   - --singlestore-args=${args:=}
-  - --db-version=8.0.21
+  - --db-version=${dbVersion:=}
+  - --databases=${databases:=}
 ---
 apiVersion: addons.kubestash.com/v1alpha1
 kind: Function
 metadata:
   name: singlestore-restore
 spec: 
-  image: ashraf10039/singlestore-restic-plugin:start_8.0.21_linux_amd64
+  image: ashraf10039/singlestore-restic-plugin:v1.0.1
   args:
   - restore
-  - --scratch-dir=${scratchDir:=/tmp}
   - --namespace=${namespace:=default}
   - --restoresession=${restoreSession:=}
   - --snapshot=${snapshot:=}
+  - --enable-cache=${enableCache:=}
+  - --scratch-dir=${scratchDir:=}
+  - --wait-timeout=${waitTimeout:=300}
   - --singlestore-args=${args:=}
-  - --db-version=8.0.21
+  - --db-version=${dbVersion:=}
 

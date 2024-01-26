@@ -12,9 +12,7 @@ spec:
   backends:
     - name: s3-backend
       storageRef:
-        apiGroup: storage.kubestash.com
         namespace: demo
-        kind: BackupStorage
         name: s3-storage
       retentionPolicy:
         name: manifest-rp
@@ -36,7 +34,11 @@ spec:
            name: encry-secret # some addon may not support encryption
            namespace: demo
       addon:
-        name: mysql-v8-0-21
+        name: mysql-addon
         tasks:
-          - name: mysql-backup
+          - name: logical-backup
+            params: 
+              databases: temp
+        
+          
 

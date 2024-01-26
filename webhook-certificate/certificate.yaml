@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mutating-webhook-configuration-certificate
+  namespace: demo
+spec:
+  secretName: mutating-webhook-configuration-certificate
+  dnsNames:
+  - mutating-webhook-configuration.demo
+  issuerRef:
+    name: selfsigned
